@@ -1,6 +1,7 @@
 const fastify = require('fastify')({ logger: true });
 const cors = require('@fastify/cors');
 const OpenAI = require('openai');
+const { marked } = require('marked');
 
 // IMPORTANT: Replace with your Clarifai PAT. It's recommended to use an environment variable for this.
 const CLARIFAI_PAT = process.env.CLARIFAI_PAT || "REPLACE_WITH_YOUR_CLARIFAI_PAT";
@@ -115,7 +116,8 @@ fastify.post('/chat', async (request, reply) => {
     });
     
     const botMessage = response.choices[0].message.content;
-    reply.send({ reply: botMessage });
+    const htmlMessage = marked(botMessage);
+    reply.send({ reply: htmlMessage });
 
   } catch (error) {
     fastify.log.error(error);
