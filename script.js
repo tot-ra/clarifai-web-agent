@@ -65,15 +65,32 @@ document.addEventListener('DOMContentLoaded', () => {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     };
 
-    const sendMessage = () => {
+    const sendMessage = async () => {
         const message = chatInput.value.trim();
         if (message) {
             addMessage(message, 'user');
             chatInput.value = '';
 
-            setTimeout(() => {
-                addMessage(`Echo: ${message}`, 'bot');
-            }, 1000);
+            try {
+                const response = await fetch('http://localhost:3000/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to get response from server');
+                }
+
+                const data = await response.json();
+                addMessage(data.reply, 'bot');
+
+            } catch (error) {
+                console.error(error);
+                addMessage('Sorry, something went wrong.', 'bot');
+            }
         }
     };
 

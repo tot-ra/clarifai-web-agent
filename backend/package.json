@@ -1,0 +1,16 @@
+{
+  "name": "clarifai-web-agent-backend",
+  "version": "1.0.0",
+  "description": "Backend for the Clarifai Web Agent",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^11.1.0",
+    "fastify": "^5.6.1",
+    "openai": "^6.2.0"
+  }
+}

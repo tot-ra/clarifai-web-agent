@@ -11,10 +11,34 @@ This project is a lightweight, embeddable chatbot designed to be easily integrat
 
 ## Getting Started
 
-To use the chatbot, simply include the following script tag in your website's HTML:
+### Frontend
 
-```html
-<script src="https://your-domain.com/script.js"></script>
-```
+To use the chatbot, open the `index.html` file in your browser.
 
-This will automatically load the chatbot and display it on your website.
+### Backend
+
+The backend server is required for the chatbot to communicate with the Clarifai API. To set up and run the backend, follow these steps:
+
+1.  **Navigate to the backend directory:**
+    ```bash
+    cd clarifai-web-agent/backend
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Set your Clarifai PAT:**
+    Create a `.env` file in the `backend` directory and add your Clarifai Personal Access Token:
+    ```
+    CLARIFAI_PAT=REPLACE_WITH_YOUR_CLARIFAI_PAT
+    ```
+    Alternatively, you can set it as an environment variable in your shell.
+
+4.  **Start the server:**
+    ```bash
+    npm start
+    ```
+
+The server will start on `http://localhost:3000`.
