@@ -114,12 +114,16 @@ fastify.post('/chat', async (request, reply) => {
         { "role": "user", "content": message },
       ],
     });
-    
+
+    console.log("Clarifai API response:", JSON.stringify(response, null, 2));
     const botMessage = response.choices[0].message.content;
+
+    console.log("Bot message:", botMessage);
     const htmlMessage = marked(botMessage);
     reply.send({ reply: htmlMessage });
 
   } catch (error) {
+    console.log("Error from Clarifai API:", error);
     fastify.log.error(error);
     reply.status(500).send({ error: 'Failed to get response from Clarifai API' });
   }

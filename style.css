@@ -14,16 +14,6 @@ body {
     flex-direction: column;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    resize: both;
-}
-
-#resize-handle {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 10px;
-    height: 10px;
-    cursor: se-resize;
 }
 
 #chat-header {

@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatMessages = document.getElementById('chat-messages');
     const chatInput = document.getElementById('chat-input');
     const chatSend = document.getElementById('chat-send');
-    const resizeHandle = document.getElementById('resize-handle');
     const collapseBtn = document.getElementById('collapse-btn');
     const chatIcon = document.getElementById('chat-icon');
 
@@ -19,12 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
         chatContainer.style.cursor = 'grabbing';
     });
 
-    document.addEventListener('mousemove', (e) => {
-        if (isDragging) {
-            chatContainer.style.left = `${e.clientX - offsetX}px`;
-            chatContainer.style.top = `${e.clientY - offsetY}px`;
-        }
-    });
 
     document.addEventListener('mouseup', () => {
         isDragging = false;
@@ -33,17 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.cursor = 'default';
     });
 
-    resizeHandle.addEventListener('mousedown', (e) => {
-        isResizing = true;
-        e.preventDefault();
-    });
-
     document.addEventListener('mousemove', (e) => {
-        if (isResizing) {
-            const newWidth = e.clientX - chatContainer.offsetLeft;
-            const newHeight = e.clientY - chatContainer.offsetTop;
-            chatContainer.style.width = `${newWidth}px`;
-            chatContainer.style.height = `${newHeight}px`;
+        if (isDragging) {
+            chatContainer.style.left = `${e.clientX - offsetX}px`;
+            chatContainer.style.top = `${e.clientY - offsetY}px`;
         }
     });
 
@@ -57,6 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
         chatIcon.classList.add('hidden');
     });
 
+    const adjustChatContainerSize = () => {
+        const headerHeight = chatHeader.offsetHeight;
+        const inputContainerHeight = document.getElementById('chat-input-container').offsetHeight;
+        const messagesHeight = chatMessages.scrollHeight;
+        const messagesWidth = chatMessages.scrollWidth;
+        
+        const totalHeight = headerHeight + inputContainerHeight + messagesHeight + 20;
+        const totalWidth = messagesWidth + 40;
+
+        const maxHeight = window.innerHeight * 0.8;
+        const maxWidth = window.innerWidth * 0.8;
+
+        chatContainer.style.height = `${Math.min(totalHeight, maxHeight)}px`;
+        chatContainer.style.width = `${Math.min(totalWidth, maxWidth)}px`;
+    };
+
     const addMessage = (message, sender) => {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', `${sender}-message`);
@@ -67,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         chatMessages.appendChild(messageElement);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+        setTimeout(adjustChatContainerSize, 50);
     };
 
     const sendMessage = async () => {
