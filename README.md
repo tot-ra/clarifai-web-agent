@@ -2,12 +2,16 @@
 
 This project is a lightweight, embeddable chatbot designed to be easily integrated into any website. It provides a simple chat interface for users to interact with a backend server, making it ideal for customer support, lead generation, or any other application that requires real-time communication.
 
+<img width="1013" height="849" alt="Screenshot 2025-10-16 at 12 33 44" src="https://github.com/user-attachments/assets/01b97bf1-51f8-4364-b3b0-70064e744f3f" />
+
 ## Features
 
 - **Lightweight and Embeddable:** The chatbot is designed to be minimal in size, ensuring it doesn't impact the performance of the host website.
 - **Simple Integration:** Easily embed the chatbot into any website with a single script tag.
 - **Chat-like Interface:** Provides a familiar chat interface for users to interact with.
-- **Backend Agnostic:** The chatbot can be connected to any backend server that supports a simple JSON-based API.
+- **Backend Agnostic:** The chatbot can be connected to any backend server that supports a simple JSON-based API. We provide a NodeJS-based server (see `backend` folder) as example
+- Hard-coded system prompt
+    - Protection against doing non-website-related LLM processing
 
 ## Getting Started
 
