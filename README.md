@@ -11,6 +11,7 @@ This project is a lightweight, embeddable chatbot designed to be easily integrat
 - **Chat-like Interface:** Provides a familiar chat interface for users to interact with.
 - **Backend Agnostic:** The chatbot can be connected to any backend server that supports a simple JSON-based API.
 - Backend included. We provide a NodeJS-based server as example (see `backend` folder)
+    - Uses GPT-OSS model by default 
     - Markdown-to-HTML support (so user would see nice table for example)
     - Hard-coded system prompt
         - Protection against doing non-website-related LLM processing
