@@ -49,3 +49,7 @@ The backend server is required for the chatbot to communicate with the Clarifai 
     ```
 
 The server will start on `http://localhost:3000`.
+
+
+## Architecture vision
+<img width="1357" height="797" alt="Screenshot 2025-10-17 at 13 41 31" src="https://github.com/user-attachments/assets/c8d236e8-a079-4bc9-9b42-a60fe651b3cb" />
